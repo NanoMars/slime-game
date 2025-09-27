@@ -8,11 +8,13 @@ extends CharacterBody2D
 @export_flags_2d_physics var enabled_collision_layers
 @export_flags_2d_physics var disabled_collision_layers
 
+var direction := 0.0
+var prev_direction := 0.0
 var touch_ground_last_tick: bool = false
 var airtime: float = 0.0
 @export var airtime_minimum_sound: float = 0.2
 
-
+@onready var anim_player = $AnimationPlayer
 
 @export var enabled: bool = true
 
@@ -23,6 +25,7 @@ var players_below: Array[CharacterBody2D] = []
 func _ready() -> void:
 	# Apply a random variation to the player speed
 	var variation = randf_range(-speed_variation, speed_variation)
+	$Sprite2D.frame_coords.y = randi_range(0, 4)
 	player_speed += player_speed * variation
 	add_to_group("player")
 	GameManager.player_count_changed()
@@ -55,11 +58,20 @@ func _physics_process(delta: float) -> void:
 					p.jump(0.1)
 
 	
-	var direction := Input.get_axis("move_left", "move_right")
+	direction = Input.get_axis("move_left", "move_right")
 	if direction and enabled:
 		velocity.x = direction * player_speed
+		if direction > 0.0:
+			anim_player.play("run_right")
+		else:
+			anim_player.play("run_left")
+		prev_direction = direction
 	else:
 		velocity.x = move_toward(velocity.x, 0, player_speed)
+		if prev_direction > 0.0:
+			anim_player.play("idle_right")
+		else:
+			anim_player.play("idle_left")
 
 	move_and_slide()
 
@@ -111,6 +123,10 @@ func die() -> void:
 func jump(delay: float = 0) -> void:
 	await get_tree().create_timer(delay).timeout
 	if is_on_floor() and check_player_below_grounded() and enabled:
+		if prev_direction > 0.0:
+			anim_player.play("jump_right")
+		else:
+			anim_player.play("jump_left")
 		velocity.y = jump_velocity
 		$JumpAudio.play()
 
