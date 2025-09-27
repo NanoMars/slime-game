@@ -11,7 +11,7 @@ viewport_path = NodePath("Sprite2D2/SubViewport")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_plcny"]
 size = Vector2(64, 128)
 
-[node name="Node2D" type="Node2D"]
+[node name="Door" type="Node2D"]
 script = ExtResource("1_rdd60")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]

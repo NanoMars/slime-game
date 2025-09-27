@@ -19,14 +19,13 @@ var airtime: float = 0.0
 var players_above: Array[CharacterBody2D] = []
 var players_below: Array[CharacterBody2D] = []
 
+
 func _ready() -> void:
 	# Apply a random variation to the player speed
 	var variation = randf_range(-speed_variation, speed_variation)
 	player_speed += player_speed * variation
 	add_to_group("player")
-
-
-
+	GameManager.player_count_changed()
 func _physics_process(delta: float) -> void:
 	
 	# Add the gravity.
@@ -106,6 +105,7 @@ func die() -> void:
 	get_parent().add_child(particles)
 	particles.global_position = global_position
 	particles.emitting = true
+	GameManager.player_count_changed()
 	queue_free()
 
 func jump(delay: float = 0) -> void:
