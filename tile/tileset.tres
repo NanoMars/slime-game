@@ -581,7 +581,7 @@ texture_region_size = Vector2i(32, 32)
 texture = ExtResource("2_wrrm7")
 texture_region_size = Vector2i(32, 32)
 0:0/0 = 0
-0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(16, 16, -0.5, 4.5, -16, 16)
+0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 16, 16, 16, 0.5, 14)
 0:0/0/custom_data_0 = true
 
 [resource]
@@ -592,5 +592,7 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 custom_data_layer_0/name = "kill"
 custom_data_layer_0/type = 1
+custom_data_layer_1/name = ""
+custom_data_layer_1/type = 0
 sources/0 = SubResource("TileSetAtlasSource_we6jq")
 sources/2 = SubResource("TileSetAtlasSource_tvfkv")

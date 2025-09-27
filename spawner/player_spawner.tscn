@@ -10,4 +10,8 @@ player_scene = ExtResource("2_4sg3s")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(0, -51)
+scale = Vector2(0.484375, 1)
 texture = ExtResource("1_p8po5")
+
+[node name="Marker2D" type="Marker2D" parent="."]
+position = Vector2(32, 0)

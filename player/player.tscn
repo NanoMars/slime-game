@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://cbmqkddcrae75"]
+[gd_scene load_steps=25 format=3 uid="uid://cbmqkddcrae75"]
 
 [ext_resource type="Script" uid="uid://bxkjfjk24mebn" path="res://player/player.gd" id="1_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://cg5nnsp6tr0dc" path="res://icon.svg" id="1_oul6g"]
+[ext_resource type="Script" uid="uid://flqxhi8i88ma" path="res://player/death_particles.gd" id="3_c35mf"]
 [ext_resource type="AudioStream" uid="uid://b1udkx6s5wrqi" path="res://assets/audio/jump_sounds/slightscream-01.mp3" id="3_tqiix"]
 [ext_resource type="AudioStream" uid="uid://de4nx7q6vutn6" path="res://assets/audio/jump_sounds/slightscream-02.mp3" id="4_e7oew"]
 [ext_resource type="AudioStream" uid="uid://ca5avv5xfhust" path="res://assets/audio/jump_sounds/slightscream-11.mp3" id="5_c35mf"]
@@ -18,8 +19,13 @@
 [ext_resource type="AudioStream" uid="uid://bj6d4susfv5cp" path="res://assets/audio/jump_sounds/slightscream-09.mp3" id="16_b8hi5"]
 [ext_resource type="AudioStream" uid="uid://dmguqdnrmne4a" path="res://assets/audio/jump_sounds/slightscream-10.mp3" id="17_2uvqg"]
 [ext_resource type="AudioStream" uid="uid://b74qk5wru38lw" path="res://assets/audio/jumpland.wav" id="18_e7oew"]
+[ext_resource type="AudioStream" uid="uid://ckuovfdhtslf8" path="res://assets/audio/bird_splat.mp3" id="20_65viv"]
+[ext_resource type="Script" uid="uid://bkrp5txis6bvs" path="res://player/death_audio.gd" id="21_x7c3f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kqu6x"]
+size = Vector2(16, 20)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7oew"]
 size = Vector2(16, 20)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1s1yo"]
@@ -41,9 +47,6 @@ stream_12/stream = ExtResource("7_x7c3f")
 stream_13/stream = ExtResource("8_bjvpn")
 stream_14/stream = ExtResource("9_s7qer")
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_e7oew"]
-size = Vector2(16, 20)
-
 [node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_g1dw6")
 player_speed = 100.0
@@ -55,6 +58,23 @@ shape = SubResource("RectangleShape2D_kqu6x")
 [node name="Sprite2D" type="Sprite2D" parent="."]
 scale = Vector2(0.120000124, 0.1599999)
 texture = ExtResource("1_oul6g")
+
+[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+shape = SubResource("RectangleShape2D_e7oew")
+target_position = Vector2(0, 3)
+max_results = 4
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="."]
+modulate = Color(1, 0, 0, 1)
+emitting = false
+one_shot = true
+explosiveness = 1.0
+direction = Vector2(0, -1)
+initial_velocity_min = 104.96
+initial_velocity_max = 204.89
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+script = ExtResource("3_c35mf")
 
 [node name="JumpAudio" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_1s1yo")
@@ -68,7 +88,9 @@ volume_db = -45.0
 pitch_scale = 0.58
 max_polyphony = 3
 
-[node name="ShapeCast2D" type="ShapeCast2D" parent="."]
-shape = SubResource("RectangleShape2D_e7oew")
-target_position = Vector2(0, 3)
-max_results = 4
+[node name="DeathAudio" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("20_65viv")
+script = ExtResource("21_x7c3f")
+
+[connection signal="finished" from="CPUParticles2D" to="CPUParticles2D" method="_on_finished"]
+[connection signal="finished" from="DeathAudio" to="DeathAudio" method="_on_finished"]

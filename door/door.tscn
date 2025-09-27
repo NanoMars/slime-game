@@ -1,0 +1,30 @@
+[gd_scene load_steps=3 format=3 uid="uid://0vt3kq4svmkf"]
+
+[ext_resource type="Texture2D" uid="uid://cg5nnsp6tr0dc" path="res://icon.svg" id="1_plcny"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_plcny"]
+viewport_path = NodePath("Sprite2D2/SubViewport")
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.5, 1)
+texture = ExtResource("1_plcny")
+
+[node name="Sprite2D2" type="Sprite2D" parent="."]
+texture = SubResource("ViewportTexture_plcny")
+
+[node name="SubViewport" type="SubViewport" parent="Sprite2D2"]
+transparent_bg = true
+
+[node name="Label" type="Label" parent="Sprite2D2/SubViewport"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_outline_color = Color(0, 0, 0, 1)
+theme_override_constants/outline_size = 25
+text = "10"
+horizontal_alignment = 1
+vertical_alignment = 1

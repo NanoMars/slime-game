@@ -4,10 +4,17 @@ extends CharacterBody2D
 @export var jump_velocity: float = -400.0
 @export var speed_variation: float = 0.2
 @export var jump_time_variation: float = 0.2
+@export var jump_coyote_time: float = 0.1
+@export_flags_2d_physics var enabled_collision_layers
+@export_flags_2d_physics var disabled_collision_layers
 
 var touch_ground_last_tick: bool = false
 var airtime: float = 0.0
 @export var airtime_minimum_sound: float = 0.2
+
+
+
+@export var enabled: bool = true
 
 var players_above: Array[CharacterBody2D] = []
 var players_below: Array[CharacterBody2D] = []
@@ -41,7 +48,7 @@ func _physics_process(delta: float) -> void:
 		
 
 	# Handle jump.
-	if Input.is_action_pressed("jump") and is_on_floor() and players_above.is_empty(): # was: not players_above
+	if Input.is_action_pressed("jump") and (is_on_floor() or airtime <= jump_coyote_time) and players_above.is_empty(): # was: not players_above
 		jump(randf_range(0, jump_time_variation))
 		if not players_below.is_empty():			
 			for p in players_below:
@@ -50,7 +57,7 @@ func _physics_process(delta: float) -> void:
 
 	
 	var direction := Input.get_axis("move_left", "move_right")
-	if direction:
+	if direction and enabled:
 		velocity.x = direction * player_speed
 	else:
 		velocity.x = move_toward(velocity.x, 0, player_speed)
@@ -70,7 +77,7 @@ func _physics_process(delta: float) -> void:
 	
 
 	if get_tile_kill():
-		queue_free()
+		die()
 
 func get_tile_kill() -> bool:
 	var tilemap: TileMapLayer = get_tree().get_first_node_in_group("tilemap")
@@ -88,9 +95,22 @@ func get_tile_kill() -> bool:
 
 	return false
 
+func die() -> void:
+	var particles = $CPUParticles2D
+	var DeathAudio = $DeathAudio
+	remove_child(DeathAudio)
+	get_parent().add_child(DeathAudio)
+	DeathAudio.play()
+	
+	remove_child(particles)
+	get_parent().add_child(particles)
+	particles.global_position = global_position
+	particles.emitting = true
+	queue_free()
+
 func jump(delay: float = 0) -> void:
 	await get_tree().create_timer(delay).timeout
-	if is_on_floor() and check_player_below_grounded():
+	if is_on_floor() and check_player_below_grounded() and enabled:
 		velocity.y = jump_velocity
 		$JumpAudio.play()
 
