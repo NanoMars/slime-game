@@ -30,3 +30,22 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, player_speed)
 
 	move_and_slide()
+
+	if get_tile_kill():
+		queue_free()
+
+func get_tile_kill() -> bool:
+	var tilemap: TileMapLayer = get_tree().get_first_node_in_group("tilemap")
+
+	if not tilemap:
+		return false
+
+	var cell := tilemap.local_to_map(global_position)
+	var data: TileData = tilemap.get_cell_tile_data(cell)
+
+	if data:
+		var kill: bool = data.get_custom_data("kill")
+		if kill:
+			return kill
+
+	return false
