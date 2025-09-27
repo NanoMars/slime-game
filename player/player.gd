@@ -25,7 +25,6 @@ func _physics_process(delta: float) -> void:
 	# Add the gravity.
 	if not touch_ground_last_tick and is_on_floor() and airtime > 0.0:
 		if airtime > airtime_minimum_sound:
-			print("Play landing sound")
 			$LandAudio.play()
 		
 
@@ -58,9 +57,7 @@ func _physics_process(delta: float) -> void:
 
 	move_and_slide()
 
-	# Print ShapeCast2D collisions
 	if $ShapeCast2D.is_colliding() and is_on_floor():
-		print("ShapeCast2D collision count: ", $ShapeCast2D.get_collision_count())
 		players_below.clear() # rebuild fresh each frame we detect collisions on floor
 		for i in range($ShapeCast2D.get_collision_count()):
 			var collider = $ShapeCast2D.get_collider(i)
@@ -93,6 +90,16 @@ func get_tile_kill() -> bool:
 
 func jump(delay: float = 0) -> void:
 	await get_tree().create_timer(delay).timeout
-	if is_on_floor():
+	if is_on_floor() and check_player_below_grounded():
 		velocity.y = jump_velocity
 		$JumpAudio.play()
+
+func check_player_below_grounded() -> bool:
+	if players_below.is_empty():
+		return true
+	
+	for p in players_below:
+		if is_instance_valid(p) and not p.is_on_floor():
+			return false
+
+	return true
