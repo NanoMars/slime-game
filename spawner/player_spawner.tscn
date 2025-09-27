@@ -4,7 +4,7 @@
 [ext_resource type="Texture2D" uid="uid://cg5nnsp6tr0dc" path="res://icon.svg" id="1_p8po5"]
 [ext_resource type="PackedScene" uid="uid://cbmqkddcrae75" path="res://player/player.tscn" id="2_4sg3s"]
 
-[node name="Marker2D" type="Marker2D"]
+[node name="PlayerSpawner" type="Marker2D"]
 script = ExtResource("1_77646")
 player_scene = ExtResource("2_4sg3s")
 

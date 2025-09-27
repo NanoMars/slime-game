@@ -47,7 +47,7 @@ stream_12/stream = ExtResource("7_x7c3f")
 stream_13/stream = ExtResource("8_bjvpn")
 stream_14/stream = ExtResource("9_s7qer")
 
-[node name="CharacterBody2D" type="CharacterBody2D" groups=["player"]]
+[node name="Player" type="CharacterBody2D" groups=["player"]]
 script = ExtResource("1_g1dw6")
 player_speed = 100.0
 airtime_minimum_sound = 0.1
