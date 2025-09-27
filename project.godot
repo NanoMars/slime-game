@@ -28,6 +28,7 @@ enabled=PackedStringArray()
 
 game_root=""
 tilemap=""
+player=""
 
 [input]
 
