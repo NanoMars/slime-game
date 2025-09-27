@@ -1,0 +1,13 @@
+[gd_scene load_steps=4 format=3 uid="uid://dmrkf8ki527vu"]
+
+[ext_resource type="Script" uid="uid://dmooalwx1p4n7" path="res://spawner/player_spawner.gd" id="1_77646"]
+[ext_resource type="Texture2D" uid="uid://cg5nnsp6tr0dc" path="res://icon.svg" id="1_p8po5"]
+[ext_resource type="PackedScene" uid="uid://cbmqkddcrae75" path="res://player/player.tscn" id="2_4sg3s"]
+
+[node name="Marker2D" type="Marker2D"]
+script = ExtResource("1_77646")
+player_scene = ExtResource("2_4sg3s")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(0, -51)
+texture = ExtResource("1_p8po5")
