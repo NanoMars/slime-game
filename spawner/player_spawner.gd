@@ -22,5 +22,3 @@ func _ready() -> void:
 	for p in players:
 		p.enabled = true
 	GameManager.allow_restart = true
-
-
