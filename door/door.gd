@@ -23,4 +23,5 @@ func _on_body_entered(body: Node) -> void:
 				print("No next level scene set!")
 				return
 			SceneManager.change_scene(next_level_scene)
+			$GameWinSound.play()
 			

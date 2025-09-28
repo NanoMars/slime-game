@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://0vt3kq4svmkf"]
+[gd_scene load_steps=8 format=3 uid="uid://0vt3kq4svmkf"]
 
 [ext_resource type="Script" uid="uid://dbiucsr66mc3q" path="res://door/door.gd" id="1_rdd60"]
 [ext_resource type="Texture2D" uid="uid://b52ir2q2gown" path="res://door/door.png" id="2_1xxlg"]
 [ext_resource type="AudioStream" uid="uid://lmwd863reytn" path="res://door/player_entered.wav" id="3_1xxlg"]
 [ext_resource type="AudioStream" uid="uid://bj7j2mvpmlo1b" path="res://door/door_unlocked.wav" id="4_42tme"]
+[ext_resource type="AudioStream" uid="uid://b3evtm7fbomuf" path="res://assets/audio/confirmation_003.ogg" id="5_42tme"]
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_plcny"]
 viewport_path = NodePath("Sprite2D2/SubViewport")
@@ -18,11 +19,13 @@ script = ExtResource("1_rdd60")
 texture = ExtResource("2_1xxlg")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = 1000
 position = Vector2(0, -50)
 texture = SubResource("ViewportTexture_plcny")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite2D2"]
 transparent_bg = true
+size = Vector2i(128, 32)
 
 [node name="Label" type="Label" parent="Sprite2D2/SubViewport"]
 anchors_preset = 15
@@ -48,3 +51,7 @@ max_polyphony = 10
 
 [node name="DoorUnlockedSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_42tme")
+
+[node name="GameWinSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_42tme")
+volume_db = -8.0

@@ -1,4 +1,4 @@
-[gd_scene load_steps=33 format=3 uid="uid://cbmqkddcrae75"]
+[gd_scene load_steps=34 format=3 uid="uid://cbmqkddcrae75"]
 
 [ext_resource type="Script" uid="uid://bxkjfjk24mebn" path="res://player/player.gd" id="1_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://wprcg2epp6wc" path="res://player/player-Sheet.png" id="2_x7c3f"]
@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://b74qk5wru38lw" path="res://assets/audio/jumpland.wav" id="18_e7oew"]
 [ext_resource type="AudioStream" uid="uid://ckuovfdhtslf8" path="res://assets/audio/bird_splat.mp3" id="20_65viv"]
 [ext_resource type="Script" uid="uid://bkrp5txis6bvs" path="res://player/death_audio.gd" id="21_x7c3f"]
+[ext_resource type="AudioStream" uid="uid://drt5v3x764t63" path="res://assets/audio/bird_poo.mp3" id="22_bjvpn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kqu6x"]
 size = Vector2(14, 16)
@@ -295,19 +296,22 @@ script = ExtResource("3_c35mf")
 
 [node name="JumpAudio" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_1s1yo")
-volume_db = -35.0
+volume_db = -15.0
 pitch_scale = 0.58
 max_polyphony = 3
 
 [node name="LandAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("18_e7oew")
-volume_db = -45.0
+volume_db = -25.0
 pitch_scale = 0.58
 max_polyphony = 3
 
 [node name="DeathAudio" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("20_65viv")
 script = ExtResource("21_x7c3f")
+
+[node name="StuckSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("22_bjvpn")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {

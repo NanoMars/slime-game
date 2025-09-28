@@ -10,8 +10,8 @@ config_version=5
 
 [application]
 
-config/name="slime_game"
-run/main_scene="uid://cnip4vfcf7qfn"
+config/name="Puplicate Escape"
+run/main_scene="uid://c5f4myu2nvjq3"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -20,6 +20,7 @@ config/icon="res://icon.svg"
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 GameManager="*res://game/game_manager/game_manager.gd"
 LogicManager="*res://logic/logic_manager.gd"
+MusicManager="*res://game/music_manager.gd"
 
 [display]
 
