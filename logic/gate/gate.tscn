@@ -1,12 +1,105 @@
-[gd_scene load_steps=6 format=3 uid="uid://cndvt4aoupte6"]
+[gd_scene load_steps=11 format=3 uid="uid://cndvt4aoupte6"]
 
 [ext_resource type="Script" uid="uid://c3s3cixwusvfd" path="res://logic/gate/gate.gd" id="1_vtyp2"]
-[ext_resource type="Texture2D" uid="uid://cw3038nfqr26f" path="res://logic/gate/gate.png" id="2_vtyp2"]
+[ext_resource type="Texture2D" uid="uid://bnc4g3quw1i3m" path="res://assets/gate.png" id="2_k4223"]
+[ext_resource type="Texture2D" uid="uid://cd2nhony7bhh" path="res://assets/gate_light.png" id="3_a3ujk"]
 [ext_resource type="AudioStream" uid="uid://cmpc1mfx8xtg7" path="res://logic/gate/button_5_short.mp3" id="3_vpfr5"]
 [ext_resource type="AudioStream" uid="uid://mbxfkfwor138" path="res://logic/gate/GateLock.mp3" id="4_k4223"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_j18s8"]
 size = Vector2(26, 64)
+
+[sub_resource type="Animation" id="Animation_k4223"]
+resource_name = "open"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoorSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HighlightSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5, 6]
+}
+
+[sub_resource type="Animation" id="Animation_a3ujk"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoorSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HighlightSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+
+[sub_resource type="Animation" id="Animation_frnl4"]
+resource_name = "close"
+length = 0.7
+step = 0.1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("DoorSprite:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 5, 4, 3, 2, 1, 0]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("HighlightSprite:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5, 0.6),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [6, 5, 4, 3, 2, 1, 0]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_frnl4"]
+_data = {
+&"RESET": SubResource("Animation_a3ujk"),
+&"close": SubResource("Animation_frnl4"),
+&"open": SubResource("Animation_k4223")
+}
 
 [node name="Gate" type="StaticBody2D"]
 script = ExtResource("1_vtyp2")
@@ -14,14 +107,21 @@ script = ExtResource("1_vtyp2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_j18s8")
 
-[node name="DoorSprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_vtyp2")
-
 [node name="HighlightSprite" type="Sprite2D" parent="."]
-texture = ExtResource("2_vtyp2")
+texture = ExtResource("3_a3ujk")
+hframes = 7
+
+[node name="DoorSprite" type="Sprite2D" parent="."]
+texture = ExtResource("2_k4223")
+hframes = 7
 
 [node name="GateOpenSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("3_vpfr5")
 
 [node name="GateCloseSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_k4223")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_frnl4")
+}
