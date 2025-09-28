@@ -11,7 +11,7 @@ func _ready() -> void:
 	for i in spawn_count:
 		var player_instance = player_scene.instantiate()
 		player_instance.global_position = global_position
-		get_tree().get_first_node_in_group("game_root").call_deferred("add_child", player_instance)
+		await get_tree().get_first_node_in_group("game_root").call_deferred("add_child", player_instance)
 		players.append(player_instance)
 		await get_tree().create_timer(spawn_timer / spawn_count).timeout
 
