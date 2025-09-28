@@ -1,8 +1,9 @@
-[gd_resource type="TileSet" load_steps=7 format=3 uid="uid://w0gu4ak7snoq"]
+[gd_resource type="TileSet" load_steps=9 format=3 uid="uid://w0gu4ak7snoq"]
 
 [ext_resource type="Texture2D" uid="uid://df515o0jrd16m" path="res://assets/tileset.png" id="1_pc3sl"]
 [ext_resource type="Texture2D" uid="uid://cuvesf8e2lecm" path="res://assets/honey.png" id="2_tvfkv"]
 [ext_resource type="Texture2D" uid="uid://b25m8gv4lgse1" path="res://assets/spike.png" id="2_wrrm7"]
+[ext_resource type="Texture2D" uid="uid://ditbnc2aqok2v" path="res://assets/acid.png" id="4_tvfkv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_we6jq"]
 texture = ExtResource("1_pc3sl")
@@ -651,6 +652,91 @@ texture_region_size = Vector2i(32, 32)
 0:0/0/physics_layer_0/polygon_0/points = PackedVector2Array(-16, 16, 16, 16, 0.5, 14)
 0:0/0/custom_data_0 = true
 
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_c5yfl"]
+texture = ExtResource("4_tvfkv")
+texture_region_size = Vector2i(32, 32)
+0:0/0 = 0
+0:0/0/terrain_set = 0
+0:0/0/terrain = 2
+0:0/0/terrains_peering_bit/right_side = 2
+0:0/0/terrains_peering_bit/left_side = 2
+0:0/0/custom_data_0 = true
+1:0/0 = 0
+1:0/0/terrain_set = 0
+1:0/0/terrain = 2
+1:0/0/terrains_peering_bit/right_side = 2
+1:0/0/terrains_peering_bit/left_side = 2
+1:0/0/custom_data_0 = true
+2:0/0 = 0
+2:0/0/terrain_set = 0
+2:0/0/terrain = 2
+2:0/0/terrains_peering_bit/right_side = 2
+2:0/0/terrains_peering_bit/left_side = 2
+2:0/0/custom_data_0 = true
+0:1/0 = 0
+0:1/0/terrain_set = 0
+0:1/0/terrain = 2
+0:1/0/terrains_peering_bit/right_side = 2
+0:1/0/terrains_peering_bit/bottom_right_corner = 2
+0:1/0/terrains_peering_bit/bottom_side = 2
+0:1/0/terrains_peering_bit/bottom_left_corner = 2
+0:1/0/terrains_peering_bit/left_side = 2
+0:1/0/custom_data_0 = true
+1:1/0 = 0
+1:1/0/terrain_set = 0
+1:1/0/terrain = 2
+1:1/0/terrains_peering_bit/right_side = 2
+1:1/0/terrains_peering_bit/bottom_right_corner = 2
+1:1/0/terrains_peering_bit/bottom_side = 2
+1:1/0/terrains_peering_bit/bottom_left_corner = 2
+1:1/0/terrains_peering_bit/left_side = 2
+1:1/0/custom_data_0 = true
+2:1/0 = 0
+2:1/0/terrain_set = 0
+2:1/0/terrain = 2
+2:1/0/terrains_peering_bit/right_side = 2
+2:1/0/terrains_peering_bit/bottom_right_corner = 2
+2:1/0/terrains_peering_bit/bottom_side = 2
+2:1/0/terrains_peering_bit/bottom_left_corner = 2
+2:1/0/terrains_peering_bit/left_side = 2
+2:1/0/custom_data_0 = true
+0:2/0 = 0
+0:2/0/terrain_set = 0
+0:2/0/terrain = 2
+0:2/0/terrains_peering_bit/right_side = 2
+0:2/0/terrains_peering_bit/bottom_right_corner = 2
+0:2/0/terrains_peering_bit/bottom_side = 2
+0:2/0/terrains_peering_bit/bottom_left_corner = 2
+0:2/0/terrains_peering_bit/left_side = 2
+0:2/0/terrains_peering_bit/top_left_corner = 2
+0:2/0/terrains_peering_bit/top_side = 2
+0:2/0/terrains_peering_bit/top_right_corner = 2
+0:2/0/custom_data_0 = true
+1:2/0 = 0
+1:2/0/terrain_set = 0
+1:2/0/terrain = 2
+1:2/0/terrains_peering_bit/right_side = 2
+1:2/0/terrains_peering_bit/bottom_right_corner = 2
+1:2/0/terrains_peering_bit/bottom_side = 2
+1:2/0/terrains_peering_bit/bottom_left_corner = 2
+1:2/0/terrains_peering_bit/left_side = 2
+1:2/0/terrains_peering_bit/top_left_corner = 2
+1:2/0/terrains_peering_bit/top_side = 2
+1:2/0/terrains_peering_bit/top_right_corner = 2
+1:2/0/custom_data_0 = true
+2:2/0 = 0
+2:2/0/terrain_set = 0
+2:2/0/terrain = 2
+2:2/0/terrains_peering_bit/right_side = 2
+2:2/0/terrains_peering_bit/bottom_right_corner = 2
+2:2/0/terrains_peering_bit/bottom_side = 2
+2:2/0/terrains_peering_bit/bottom_left_corner = 2
+2:2/0/terrains_peering_bit/left_side = 2
+2:2/0/terrains_peering_bit/top_left_corner = 2
+2:2/0/terrains_peering_bit/top_side = 2
+2:2/0/terrains_peering_bit/top_right_corner = 2
+2:2/0/custom_data_0 = true
+
 [resource]
 tile_size = Vector2i(32, 32)
 physics_layer_0/collision_layer = 1
@@ -659,6 +745,8 @@ terrain_set_0/terrain_0/name = "Terrain 0"
 terrain_set_0/terrain_0/color = Color(0.5, 0.34375, 0.25, 1)
 terrain_set_0/terrain_1/name = "honey"
 terrain_set_0/terrain_1/color = Color(0.5, 0.4375, 0.25, 1)
+terrain_set_0/terrain_2/name = "Acid"
+terrain_set_0/terrain_2/color = Color(0.46875, 0.5, 0.25, 1)
 custom_data_layer_0/name = "kill"
 custom_data_layer_0/type = 1
 custom_data_layer_1/name = "sticky"
@@ -666,3 +754,4 @@ custom_data_layer_1/type = 1
 sources/0 = SubResource("TileSetAtlasSource_we6jq")
 sources/2 = SubResource("TileSetAtlasSource_tvfkv")
 sources/1 = SubResource("TileSetAtlasSource_8oafh")
+sources/3 = SubResource("TileSetAtlasSource_c5yfl")
