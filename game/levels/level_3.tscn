@@ -23,6 +23,7 @@ spawn_count = 2
 [node name="Door" parent="." groups=["Door"] instance=ExtResource("3_5rwuc")]
 position = Vector2(896, 352)
 required_players = 1
+next_level_scene = "uid://c7wa31217312a"
 
 [node name="GameManagerSetter" parent="." instance=ExtResource("4_yh1g4")]
 level_number = 3

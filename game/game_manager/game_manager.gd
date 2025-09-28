@@ -30,7 +30,7 @@ func get_player_count() -> int:
 	var valid_players: int = 0
 	for i in get_tree().get_nodes_in_group("player"):
 		if i is CharacterBody2D:
-			if is_instance_valid(i):
+			if is_instance_valid(i) and i.is_stuck == false:
 				valid_players += 1
 	return valid_players
 

@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://bxkjfjk24mebn" path="res://player/player.gd" id="1_g1dw6"]
 [ext_resource type="Texture2D" uid="uid://wprcg2epp6wc" path="res://player/player-Sheet.png" id="2_x7c3f"]
-[ext_resource type="Script" path="res://player/death_particles.gd" id="3_c35mf"]
+[ext_resource type="Script" uid="uid://flqxhi8i88ma" path="res://player/death_particles.gd" id="3_c35mf"]
 [ext_resource type="AudioStream" uid="uid://b1udkx6s5wrqi" path="res://assets/audio/jump_sounds/slightscream-01.mp3" id="3_tqiix"]
 [ext_resource type="AudioStream" uid="uid://de4nx7q6vutn6" path="res://assets/audio/jump_sounds/slightscream-02.mp3" id="4_e7oew"]
 [ext_resource type="AudioStream" uid="uid://ca5avv5xfhust" path="res://assets/audio/jump_sounds/slightscream-11.mp3" id="5_c35mf"]
@@ -20,13 +20,13 @@
 [ext_resource type="AudioStream" uid="uid://dmguqdnrmne4a" path="res://assets/audio/jump_sounds/slightscream-10.mp3" id="17_2uvqg"]
 [ext_resource type="AudioStream" uid="uid://b74qk5wru38lw" path="res://assets/audio/jumpland.wav" id="18_e7oew"]
 [ext_resource type="AudioStream" uid="uid://ckuovfdhtslf8" path="res://assets/audio/bird_splat.mp3" id="20_65viv"]
-[ext_resource type="Script" path="res://player/death_audio.gd" id="21_x7c3f"]
+[ext_resource type="Script" uid="uid://bkrp5txis6bvs" path="res://player/death_audio.gd" id="21_x7c3f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kqu6x"]
 size = Vector2(14, 16)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e7oew"]
-size = Vector2(16, 20)
+size = Vector2(32, 1)
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_1s1yo"]
 playback_mode = 1
@@ -276,8 +276,9 @@ hframes = 6
 vframes = 5
 
 [node name="ShapeCast2D" type="ShapeCast2D" parent="."]
+position = Vector2(0, 8)
 shape = SubResource("RectangleShape2D_e7oew")
-target_position = Vector2(0, 3)
+target_position = Vector2(0, 0.5)
 max_results = 4
 
 [node name="CPUParticles2D" type="CPUParticles2D" parent="."]
