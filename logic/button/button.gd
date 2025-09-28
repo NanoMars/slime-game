@@ -3,6 +3,8 @@ extends Area2D
 @export var signal_colour: Color = Color(1, 0, 0)
 
 @onready var panel = $Sprite2D2/SubViewport/Panel
+@onready var sprite = $Sprite2D
+
 var _panel_style: StyleBoxFlat
 
 
@@ -15,11 +17,13 @@ var players_in_area: Array[Node]:
 			LogicManager.colour_enabled.emit(signal_colour)
 			if _panel_style:
 				_panel_style.border_color = Color(1.0, 1.0, 1.0)
+			sprite.frame = 1
 		elif value.size() < _players_in_area.size() and value.size() == 0:
 
 			LogicManager.colour_disabled.emit(signal_colour)
 			if _panel_style:
 				_panel_style.border_color = Color(0.0, 0.0, 0.0)
+			sprite.frame = 0
 		_players_in_area = value
 		print("Players in aasdfrea: ", _players_in_area.size())
 
@@ -48,6 +52,7 @@ func _ready() -> void:
 func _body_entered(body: Node) -> void:
 	print("Body entered: ", body)
 	if body is CharacterBody2D:
+		
 		var temp_array = players_in_area.duplicate()
 		temp_array.append(body)
 		players_in_area = temp_array

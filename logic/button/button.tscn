@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cp6xebbyuk5mv"]
 
-[ext_resource type="Texture2D" uid="uid://cg5nnsp6tr0dc" path="res://icon.svg" id="1_c5owq"]
 [ext_resource type="Script" uid="uid://cu30m7vfh1gw5" path="res://logic/button/button.gd" id="1_djpst"]
+[ext_resource type="Texture2D" uid="uid://bn726k01n1qh4" path="res://assets/button.png" id="2_j1fqn"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e16lw"]
 size = Vector2(64, 16)
@@ -32,8 +32,8 @@ script = ExtResource("1_djpst")
 shape = SubResource("RectangleShape2D_e16lw")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
-scale = Vector2(0.5, 0.125)
-texture = ExtResource("1_c5owq")
+texture = ExtResource("2_j1fqn")
+hframes = 2
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
 position = Vector2(0, -16)
@@ -47,7 +47,6 @@ size = Vector2i(8, 8)
 [node name="Panel" type="Panel" parent="Sprite2D2/SubViewport"]
 top_level = true
 custom_minimum_size = Vector2(8, 8)
-anchors_preset = -1
 offset_right = 8.0
 offset_bottom = 8.0
 size_flags_horizontal = 4

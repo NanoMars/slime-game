@@ -6,6 +6,7 @@ class_name Gate
 @onready var gate_close_sound = $GateCloseSound
 @onready var collision_shape: CollisionShape2D = $CollisionShape2D
 @onready var highlight_sprite: Sprite2D = $HighlightSprite
+@onready var anim_player := $AnimationPlayer
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -18,6 +19,7 @@ func _on_colour_enabled(colour: Color) -> void:
 	if colour == listen_colour:
 		gate_open_sound.play()
 		collision_shape.set_deferred("disabled", true)
+		anim_player.play("open")
 		
 
 func _on_colour_disabled(colour: Color) -> void:
@@ -25,3 +27,4 @@ func _on_colour_disabled(colour: Color) -> void:
 	if colour == listen_colour:
 		gate_close_sound.play()
 		collision_shape.set_deferred("disabled", false)
+		anim_player.play("close")
