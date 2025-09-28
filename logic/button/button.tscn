@@ -2,11 +2,12 @@
 
 [ext_resource type="Texture2D" uid="uid://cg5nnsp6tr0dc" path="res://icon.svg" id="1_c5owq"]
 [ext_resource type="Script" uid="uid://cu30m7vfh1gw5" path="res://logic/button/button.gd" id="1_djpst"]
-[ext_resource type="AudioStream" uid="uid://ciklk3wrw3760" path="res://logic/button/button_up.wav" id="2_1fgv8"]
-[ext_resource type="AudioStream" uid="uid://bat3hk8l346sw" path="res://logic/button/button_down.wav" id="3_djpst"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_e16lw"]
 size = Vector2(64, 16)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_djpst"]
+viewport_path = NodePath("Sprite2D2/SubViewport")
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_djpst"]
 bg_color = Color(1, 0, 0, 1)
@@ -16,12 +17,15 @@ border_width_right = 2
 border_width_bottom = 2
 border_color = Color(0, 0, 0, 1)
 border_blend = true
-corner_radius_top_left = 4
-corner_radius_top_right = 4
-corner_radius_bottom_right = 4
-corner_radius_bottom_left = 4
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
 
-[node name="Area2D" type="Area2D"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_djpst"]
+size = Vector2(64, 8)
+
+[node name="Button" type="Area2D"]
 script = ExtResource("1_djpst")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -31,26 +35,27 @@ shape = SubResource("RectangleShape2D_e16lw")
 scale = Vector2(0.5, 0.125)
 texture = ExtResource("1_c5owq")
 
-[node name="ButtonPressSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("2_1fgv8")
-max_polyphony = 6
-
-[node name="ButtonReleaseSound" type="AudioStreamPlayer" parent="."]
-stream = ExtResource("3_djpst")
-max_polyphony = 6
-
 [node name="Sprite2D2" type="Sprite2D" parent="."]
+position = Vector2(0, -16)
+texture = SubResource("ViewportTexture_djpst")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite2D2"]
 disable_3d = true
 transparent_bg = true
+size = Vector2i(8, 8)
 
 [node name="Panel" type="Panel" parent="Sprite2D2/SubViewport"]
 top_level = true
 custom_minimum_size = Vector2(8, 8)
 anchors_preset = -1
-offset_left = -4.0
-offset_top = -24.0
-offset_right = 4.0
-offset_bottom = -16.0
+offset_right = 8.0
+offset_bottom = 8.0
+size_flags_horizontal = 4
+size_flags_vertical = 4
 theme_override_styles/panel = SubResource("StyleBoxFlat_djpst")
+
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
+position = Vector2(0, 4)
+shape = SubResource("RectangleShape2D_djpst")
