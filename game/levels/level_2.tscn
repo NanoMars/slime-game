@@ -37,4 +37,4 @@ next_level_scene = "uid://c6jjhcxuv8k22"
 
 [node name="GameManagerSetter" parent="." instance=ExtResource("4_2f1k2")]
 level_number = 2
-level_name = "Spikey!"
+level_name = "Don't touch it!"

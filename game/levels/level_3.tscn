@@ -42,7 +42,7 @@ next_level_scene = "uid://c7wa31217312a"
 
 [node name="GameManagerSetter" parent="." instance=ExtResource("4_yh1g4")]
 level_number = 3
-level_name = "A sticky situation"
+level_name = "Big red button"
 
 [node name="Button" parent="." instance=ExtResource("5_5rwuc")]
 position = Vector2(384, 408)
