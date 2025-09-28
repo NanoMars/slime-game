@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b52ir2q2gown" path="res://door/door.png" id="4_816ia"]
 [ext_resource type="PackedScene" uid="uid://dmrkf8ki527vu" path="res://spawner/player_spawner.tscn" id="4_udsnl"]
 [ext_resource type="Texture2D" uid="uid://cy80d82qth16u" path="res://assets/title_screen_anim.png" id="5_udsnl"]
-[ext_resource type="Texture2D" uid="uid://ditbnc2aqok2v" path="res://assets/acid.png" id="7_ywbsv"]
+[ext_resource type="Texture2D" uid="uid://8xngrgbyh6ae" path="res://assets/plaything.png" id="7_ywbsv"]
 [ext_resource type="PackedScene" uid="uid://mr2on1wii00" path="res://game/game_manager/game_manager_setter.tscn" id="8_ywbsv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tuktx"]
@@ -17,6 +17,21 @@ texture_region_size = Vector2i(70, 95)
 [sub_resource type="TileSet" id="TileSet_nmnw7"]
 tile_size = Vector2i(70, 95)
 sources/1 = SubResource("TileSetAtlasSource_tuktx")
+
+[sub_resource type="Animation" id="Animation_xc4vh"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Sprite2D:frame")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
 
 [sub_resource type="Animation" id="Animation_5olrl"]
 resource_name = "anim"
@@ -34,21 +49,6 @@ tracks/0/keys = {
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16, 17, 18, 19]
-}
-
-[sub_resource type="Animation" id="Animation_xc4vh"]
-length = 0.001
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Sprite2D:frame")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_yo7wq"]
@@ -84,6 +84,7 @@ texture_normal = ExtResource("4_816ia")
 [node name="PlayerSpawner" parent="." instance=ExtResource("4_udsnl")]
 position = Vector2(829, 206)
 scale = Vector2(2, 2)
+spawn_timer = 1.5
 spawn_infinitely = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
@@ -98,13 +99,16 @@ libraries = {
 }
 
 [node name="TextureButton" type="TextureButton" parent="."]
-offset_left = 165.0
-offset_top = 88.0
-offset_right = 261.0
-offset_bottom = 184.0
+offset_left = 160.0
+offset_top = 32.0
+offset_right = 448.0
+offset_bottom = 216.0
 texture_normal = ExtResource("7_ywbsv")
+ignore_texture_size = true
+stretch_mode = 5
 
 [node name="GameManagerSetter" parent="." instance=ExtResource("8_ywbsv")]
+game_manager_enabled = false
 
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
