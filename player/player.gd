@@ -171,6 +171,7 @@ func die() -> void:
 func stick() -> void:
 	is_stuck = true
 	sprite.modulate = Color(1.0, 0.761, 0.494)
+	$StuckSound.play()
 	GameManager.player_count_changed()
 
 func jump(delay: float = 0) -> void:

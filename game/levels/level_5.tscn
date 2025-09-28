@@ -1,11 +1,10 @@
-[gd_scene load_steps=11 format=4 uid="uid://dpwhcpxfv3jj2"]
+[gd_scene load_steps=10 format=4 uid="uid://dpwhcpxfv3jj2"]
 
 [ext_resource type="TileSet" uid="uid://w0gu4ak7snoq" path="res://tile/tileset.tres" id="1_2f1k2"]
 [ext_resource type="Texture2D" uid="uid://inb0idp43py8" path="res://assets/bg.png" id="1_ey10t"]
 [ext_resource type="PackedScene" uid="uid://dmrkf8ki527vu" path="res://spawner/player_spawner.tscn" id="2_7dx7g"]
 [ext_resource type="PackedScene" uid="uid://0vt3kq4svmkf" path="res://door/door.tscn" id="3_7neg2"]
 [ext_resource type="PackedScene" uid="uid://mr2on1wii00" path="res://game/game_manager/game_manager_setter.tscn" id="4_2f1k2"]
-[ext_resource type="AudioStream" uid="uid://dpnejr53f8gci" path="res://assets/enchanted tiki 86.mp3" id="6_4tw6r"]
 [ext_resource type="PackedScene" uid="uid://cp6xebbyuk5mv" path="res://logic/button/button.tscn" id="6_p2lkm"]
 [ext_resource type="PackedScene" uid="uid://cndvt4aoupte6" path="res://logic/gate/gate.tscn" id="7_p2lkm"]
 
@@ -42,7 +41,6 @@ required_players = 1
 [node name="GameManagerSetter" parent="." instance=ExtResource("4_2f1k2")]
 level_number = 5
 level_name = "blehh"
-music = ExtResource("6_4tw6r")
 
 [node name="Button" parent="." instance=ExtResource("6_p2lkm")]
 position = Vector2(128, 344)

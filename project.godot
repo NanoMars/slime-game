@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="slime_game"
+config/name="Puplicate Escape"
 run/main_scene="uid://c5f4myu2nvjq3"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"

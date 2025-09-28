@@ -1,10 +1,11 @@
-[gd_scene load_steps=8 format=4 uid="uid://lp06fsv7hu14"]
+[gd_scene load_steps=9 format=4 uid="uid://lp06fsv7hu14"]
 
 [ext_resource type="TileSet" uid="uid://w0gu4ak7snoq" path="res://tile/tileset.tres" id="1_2f1k2"]
 [ext_resource type="PackedScene" uid="uid://dmrkf8ki527vu" path="res://spawner/player_spawner.tscn" id="2_7dx7g"]
 [ext_resource type="Texture2D" uid="uid://inb0idp43py8" path="res://assets/bg.png" id="2_7neg2"]
 [ext_resource type="PackedScene" uid="uid://0vt3kq4svmkf" path="res://door/door.tscn" id="3_7neg2"]
 [ext_resource type="PackedScene" uid="uid://mr2on1wii00" path="res://game/game_manager/game_manager_setter.tscn" id="4_2f1k2"]
+[ext_resource type="Texture2D" uid="uid://cq1t308131kb8" path="res://assets/toxic.png" id="6_7neg2"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_6jjde"]
 texture = ExtResource("2_7neg2")
@@ -38,3 +39,8 @@ next_level_scene = "uid://c6jjhcxuv8k22"
 [node name="GameManagerSetter" parent="." instance=ExtResource("4_2f1k2")]
 level_number = 2
 level_name = "Don't touch it!"
+
+[node name="Toxic" type="Sprite2D" parent="."]
+position = Vector2(568, 312)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("6_7neg2")

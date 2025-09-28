@@ -1,6 +1,8 @@
-[gd_scene load_steps=2 format=3 uid="uid://mr2on1wii00"]
+[gd_scene load_steps=3 format=3 uid="uid://mr2on1wii00"]
 
 [ext_resource type="Script" uid="uid://bwvjctqit3e6t" path="res://game/game_manager/game_manager_setter.gd" id="1_8iwqr"]
+[ext_resource type="AudioStream" uid="uid://dpnejr53f8gci" path="res://assets/enchanted tiki 86.mp3" id="2_e4exs"]
 
 [node name="GameManagerSetter" type="Node"]
 script = ExtResource("1_8iwqr")
+music = ExtResource("2_e4exs")

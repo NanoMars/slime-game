@@ -24,6 +24,7 @@ texture = SubResource("ViewportTexture_plcny")
 
 [node name="SubViewport" type="SubViewport" parent="Sprite2D2"]
 transparent_bg = true
+size = Vector2i(128, 32)
 
 [node name="Label" type="Label" parent="Sprite2D2/SubViewport"]
 anchors_preset = 15
@@ -49,3 +50,5 @@ max_polyphony = 10
 
 [node name="DoorUnlockedSound" type="AudioStreamPlayer" parent="."]
 stream = ExtResource("4_42tme")
+
+[node name="GameWin" type="AudioStreamPlayer" parent="."]
