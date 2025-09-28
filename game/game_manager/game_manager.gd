@@ -53,4 +53,5 @@ func player_count_changed() -> void:
 
 	if get_player_count() < get_min_players() and allow_restart:
 		SceneManager.reload_scene()
+		MusicManager.play_death_sound()
 	
