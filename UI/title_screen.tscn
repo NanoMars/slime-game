@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://cnip4vfcf7qfn"]
+[gd_scene load_steps=14 format=4 uid="uid://cnip4vfcf7qfn"]
 
 [ext_resource type="Texture2D" uid="uid://inb0idp43py8" path="res://assets/bg.png" id="1_5whv5"]
 [ext_resource type="Script" uid="uid://dapbr7qx1clif" path="res://UI/title_screen.gd" id="1_nmnw7"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://dmrkf8ki527vu" path="res://spawner/player_spawner.tscn" id="4_udsnl"]
 [ext_resource type="Texture2D" uid="uid://cy80d82qth16u" path="res://assets/title_screen_anim.png" id="5_udsnl"]
 [ext_resource type="Texture2D" uid="uid://ditbnc2aqok2v" path="res://assets/acid.png" id="7_ywbsv"]
+[ext_resource type="PackedScene" uid="uid://mr2on1wii00" path="res://game/game_manager/game_manager_setter.tscn" id="8_ywbsv"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_tuktx"]
 texture = ExtResource("1_5whv5")
@@ -56,7 +57,7 @@ _data = {
 &"anim": SubResource("Animation_5olrl")
 }
 
-[node name="Title Screen" type="Node2D"]
+[node name="Title Screen" type="Node2D" groups=["game_root"]]
 texture_filter = 1
 script = ExtResource("1_nmnw7")
 
@@ -83,6 +84,7 @@ texture_normal = ExtResource("4_816ia")
 [node name="PlayerSpawner" parent="." instance=ExtResource("4_udsnl")]
 position = Vector2(829, 206)
 scale = Vector2(2, 2)
+spawn_infinitely = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 position = Vector2(360, 100)
@@ -101,6 +103,8 @@ offset_top = 88.0
 offset_right = 261.0
 offset_bottom = 184.0
 texture_normal = ExtResource("7_ywbsv")
+
+[node name="GameManagerSetter" parent="." instance=ExtResource("8_ywbsv")]
 
 [connection signal="pressed" from="Exit" to="." method="_on_exit_pressed"]
 [connection signal="pressed" from="TextureButton" to="." method="_on_texture_button_pressed"]
