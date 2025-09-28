@@ -18,6 +18,7 @@ script = ExtResource("1_rdd60")
 texture = ExtResource("2_1xxlg")
 
 [node name="Sprite2D2" type="Sprite2D" parent="."]
+z_index = 1000
 position = Vector2(0, -50)
 texture = SubResource("ViewportTexture_plcny")
 

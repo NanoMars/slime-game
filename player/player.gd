@@ -103,6 +103,7 @@ func _physics_process(delta: float) -> void:
 	
 
 	if get_tile_data():
+		print("Tile data: ", get_tile_data())
 		if get_tile_data().has("kill") and get_tile_data()["kill"] == true:
 			die()
 		if get_tile_data().has("sticky") and get_tile_data()["sticky"] and is_on_floor() and players_below.is_empty() and raycast_grounded:
@@ -112,27 +113,46 @@ func _physics_process(delta: float) -> void:
 
 
 func get_tile_data() -> Dictionary[String, Variant]:
-	var tilemap: TileMapLayer = get_tree().get_first_node_in_group("tilemap")
-	var returnvar: Dictionary[String, Variant] = {}
-	if not tilemap:
-		return returnvar
+	var result: Dictionary[String, Variant] = {}
 
-	var cell := tilemap.local_to_map(global_position)
-	var data: TileData = tilemap.get_cell_tile_data(cell)
+	# Collect every TileMap/TileMapLayer in the "tilemap" group.
+	var nodes := get_tree().get_nodes_in_group("tilemap")
+	if nodes.is_empty():
+		return result
 
-	if data:
-		# Get all custom data layers from the tileset
-		var tileset = tilemap.tile_set
-		if tileset:
-			for i in range(tileset.get_custom_data_layers_count()):
-				var layer_name = tileset.get_custom_data_layer_name(i)
-				var custom_data = data.get_custom_data(layer_name)
-				if custom_data != null:
-					returnvar[layer_name] = custom_data
-					print("Tile custom data: ", layer_name, " value: ", returnvar[layer_name])
-			return returnvar
+	for n in nodes:
+		var tilemap: Node = n
+		if not (tilemap is TileMapLayer or tilemap is TileMap):
+			continue
 
-	return returnvar
+		# Use the tilemap's local coords when mapping to cells.
+		var local_pos: Vector2 = tilemap.to_local(global_position)
+		var cell: Vector2i = tilemap.local_to_map(local_pos)
+		var data: TileData = tilemap.get_cell_tile_data(cell)
+		if data == null:
+			continue
+
+		var tileset: TileSet = tilemap.tile_set
+		if tileset == null:
+			continue
+
+		for i in range(tileset.get_custom_data_layers_count()):
+			var layer_name: String = tileset.get_custom_data_layer_name(i)
+			var custom_data: Variant = data.get_custom_data(layer_name)
+			if custom_data == null:
+				continue
+
+			if result.has(layer_name):
+				var existing: Variant = result[layer_name]
+				# If both are bools, OR them so any true wins; otherwise last-wins.
+				if typeof(existing) == TYPE_BOOL and typeof(custom_data) == TYPE_BOOL:
+					result[layer_name] = existing or custom_data
+				else:
+					result[layer_name] = custom_data
+			else:
+				result[layer_name] = custom_data
+
+	return result
 
 func die() -> void:
 	var particles = $CPUParticles2D

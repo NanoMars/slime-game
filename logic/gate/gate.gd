@@ -18,13 +18,16 @@ func _on_colour_enabled(colour: Color) -> void:
 	print("Colour enabled: ", colour, " listening for: ", listen_colour)
 	if colour == listen_colour:
 		gate_open_sound.play()
-		collision_shape.set_deferred("disabled", true)
 		anim_player.play("open")
+		await anim_player.animation_finished
+		collision_shape.set_deferred("disabled", true)
 		
 
 func _on_colour_disabled(colour: Color) -> void:
 	print("Colour disabled: ", colour, " listening for: ", listen_colour)
 	if colour == listen_colour:
 		gate_close_sound.play()
-		collision_shape.set_deferred("disabled", false)
+		
 		anim_player.play("close")
+		await anim_player.animation_finished
+		collision_shape.set_deferred("disabled", false)
