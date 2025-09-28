@@ -19,6 +19,7 @@ config/icon="res://icon.svg"
 
 SceneManager="*res://addons/scene_manager/SceneManager.tscn"
 GameManager="*res://game/game_manager/game_manager.gd"
+LogicManager="*res://logic/logic_manager.gd"
 
 [display]
 
